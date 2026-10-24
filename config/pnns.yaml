@@ -1,0 +1,71 @@
+version: '1.0'
+id: pnns
+name: National Sovereign Cloud Plan
+correct_acronym: PNNS
+official_basis: Council of Ministers Resolution No. 102/2026 of 27 May, corrected by Correction Statement
+  No. 22/2026/1 of 19 June.
+sources:
+- https://diariodarepublica.pt/dr/legislacao-consolidada/resolucao-conselho-ministros/2026-1127305775
+- https://diariodarepublica.pt/dr/detalhe/declaracao-retificacao/22-2026-1134399000
+- https://digital.gov.pt/pt/estrategia-digital/plano-nacional-nuvem-soberana
+dimensions:
+- id: pessoas
+  name: People and human life
+  question: Could the compromise of the process, data, or systems threaten people's safety or lives?
+- id: estado
+  name: State stability
+  question: Could the compromise affect the continuity and stability of state functions or public services?
+- id: exposicao
+  name: Data exposure
+  question: What harm could result from the improper disclosure of the information supported by the process?
+impact_scale:
+- code: S
+  name: No Impact
+- code: M
+  name: Moderate Impact
+- code: G
+  name: Significant Impact
+official_levels:
+- code: '0'
+  name: Neutral
+- code: '1'
+  name: Routine
+- code: '2'
+  name: Critical
+- code: 3.a
+  name: Strategic
+- code: 3.b
+  name: Strategic (national scope)
+technical_reference:
+  status: not_found_in_public_sources_consulted
+  consultation_date: '2026-10-24'
+  note: Not found does not mean officially nonexistent. Verify again with digital.gov.pt/CNCS/ARTE before actual
+    adoption.
+algorithm:
+  type: provisional_unofficial
+  origin: Student Guide, page 3; educational hypothesis
+  rules:
+  - id: all_no_impact
+    g_exactly: 0
+    m_exactly: 0
+    level: '0'
+  - id: some_moderate_no_significant
+    g_exactly: 0
+    m_minimum: 1
+    level: '1'
+  - id: one_significant
+    g_exactly: 1
+    level: '2'
+  - id: two_or_three_significant
+    g_minimum: 2
+    level: 3.a
+  exception_3b:
+    base_level: 3.a
+    requires_explicit_national_control: true
+    final_level: 3.b
+    note: Do not infer national control from isolated keywords; define a list and require human approval.
+prequalification_rule: Assess the business process, not just the document. The illustrative category assessments in
+  process.yaml do not replace the future prequalification of second-level CLAV processes.
+content_rule: Concrete evidence in the document may raise each dimension (S < M < G), but never lower it below
+  the value inherited from the process.
+final_decision: human_review_in_uncertain_cases

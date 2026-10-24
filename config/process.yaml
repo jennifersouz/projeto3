@@ -1,0 +1,121 @@
+- id: procurement
+  name: Procurement
+  description: Acquisition of goods and services, including supplier proposals and evaluation reports.
+  example_documents:
+  - Synthetic supplier proposal
+  - Synthetic proposal evaluation report
+  key_codes:
+  - code: 300.10.005
+    official_title: Transaction and transfer of non-cultural movable goods and contracting of services
+    when_to_use: Procedures for acquiring movable goods and services; do not apply automatically to public works.
+    confirmation_source: https://arquivohistorico.scml.pt/index.php/transacao-e-transmissao-de-bens-moveis-nao-culturais-e-contratacao-de-servicos?sf_culture=pt
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  provisional_prequalification:
+    people: S
+    status: M
+    exposure: M
+    justification: Proposals under evaluation may involve administrative operations and sensitive commercial information;
+      information already published may have lower exposure.
+- id: juridico
+  name: Legal
+  description: Legal interpretation and preparation of opinions; distinguishes opinions from disciplinary processes.
+  example_documents:
+  - Synthetic general legal opinion
+  - Synthetic request for interpretation of a norm
+  - Synthetic internal legal note
+  key_codes:
+  - code: 100.20.001
+    official_title: Production of technical-legal opinions interpreting legal and regulatory instruments
+    when_to_use: Opinions on abstract/general interpretation; an opinion on an individual process forms part of the
+      respective process.
+    confirmation_source: https://epl.di.uminho.pt/~mef2016/classes/showClasse.php?codigo=100.20.001
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  provisional_prequalification:
+    people: S
+    status: M
+    exposure: M
+    justification: Internal opinions may support decisions and contain confidential information; sensitivity varies
+      with the specific subject matter.
+- id: investigacao_desenvolvimento
+  name: Research and Development
+  description: Applied research, experimental development, prototyping, and innovation.
+  example_documents:
+  - Synthetic applied research report
+  - Synthetic prototype descriptive memorandum
+  - Synthetic research plan
+  key_codes:
+  - code: 800.20.002
+    official_title: Execution of applied research projects
+    when_to_use: Applied research projects. It appears in the descendant branch of 800.20 in the publicly indexed
+      CLAV version.
+    confirmation_source: https://epl.di.uminho.pt/~mef2016/classes/showClasse.php?codigo=800.20.002
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  - code: 800.20.500
+    official_title: Experimental and applied development
+    when_to_use: Prototyping projects, experimental development, and application of knowledge.
+    confirmation_source: https://clav.dglab.gov.pt/classes/consultar/c800.20
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  provisional_prequalification:
+    people: S
+    status: S
+    exposure: M
+    justification: Common R&D project scenario with technical information under development; strategic projects may
+      require review and greater impact.
+- id: saude
+  name: Health
+  description: Provision of clinical care and diagnostic support examinations.
+  example_documents:
+  - Synthetic clinical report
+  - Synthetic laboratory result
+  - Synthetic imaging report
+  key_codes:
+  - code: 700.20.200
+    official_title: Provision of personalized health care
+    when_to_use: Records linked to the provision of personalized care; verify the specific episode.
+    confirmation_source: https://clav.dglab.gov.pt/classes/consultar/c700.20
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  - code: 700.20.406
+    official_title: Support for diagnosis and therapy
+    when_to_use: Laboratory examinations, imaging, and other diagnostic support procedures, according to context.
+    confirmation_source: https://clav.dglab.gov.pt/classes/consultar/c700.20
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  provisional_prequalification:
+    people: G
+    status: S
+    exposure: G
+    justification: 'Sensitive clinical care scenario: failures in availability/integrity may harm individuals; undue
+      exposure can be especially harmful. Do not generalize to all health services.'
+- id: gestao_administrativa
+  name: Administrative Management
+  description: Registration and organization of decision-making and advisory bodies' meetings.
+  example_documents:
+  - Synthetic executive body meeting minutes
+  - Synthetic summons
+  - Synthetic advisory body recommendation
+  key_codes:
+  - code: 150.10.701
+    official_title: Executive body meetings
+    when_to_use: Meetings of executive bodies, including minutes; it does not represent any internal meeting.
+    confirmation_source: https://arquivohistorico.scml.pt/index.php/reuniao-de-orgaos-executivos
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  - code: 150.10.702
+    official_title: Meetings of operational and advisory bodies and structures
+    when_to_use: Meetings of operational structures and advisory bodies; verify the nature of the body.
+    confirmation_source: https://epl.di.uminho.pt/~mef2016/classes/showClasse.php?codigo=150.10.702
+    verification: code_and_title_verified_in_public_source;_confirm_changes_2026
+  provisional_prequalification:
+    people: S
+    status: S
+    exposure: S
+    justification: Routine administrative scenario without sensitive content; strategic deliberations or personal data
+      require increased impact.
+- id: outro
+  name: Other / Unidentified
+  type: fallback
+  description: Technical category for documents without a process identifiable with sufficient confidence; requires human
+    review.
+  example_documents:
+  - File without sufficient context
+  - Document that does not belong to the defined categories
+  key_codes: []
+  provisional_prequalification: null
