@@ -1,71 +1,71 @@
-version: '1.0'
+versao: '1.0'
 id: pnns
-name: National Sovereign Cloud Plan
-correct_acronym: PNNS
-official_basis: Council of Ministers Resolution No. 102/2026 of 27 May, corrected by Correction Statement
-  No. 22/2026/1 of 19 June.
-sources:
+nome: Plano Nacional de Nuvem Soberana
+sigla_correta: PNNS
+fundamento_oficial: Resolução do Conselho de Ministros n.º 102/2026, de 27 de maio, retificada pela Declaração
+  de Retificação n.º 22/2026/1, de 19 de junho.
+fontes:
 - https://diariodarepublica.pt/dr/legislacao-consolidada/resolucao-conselho-ministros/2026-1127305775
 - https://diariodarepublica.pt/dr/detalhe/declaracao-retificacao/22-2026-1134399000
 - https://digital.gov.pt/pt/estrategia-digital/plano-nacional-nuvem-soberana
-dimensions:
+dimensoes:
 - id: pessoas
-  name: People and human life
-  question: Could the compromise of the process, data, or systems threaten people's safety or lives?
+  nome: Pessoas e vida humana
+  pergunta: O comprometimento do processo, dados ou sistemas pode ameaçar a segurança ou vida de pessoas?
 - id: estado
-  name: State stability
-  question: Could the compromise affect the continuity and stability of state functions or public services?
+  nome: Estabilidade do Estado
+  pergunta: O comprometimento afeta a continuidade e estabilidade das funções do Estado ou serviços públicos?
 - id: exposicao
-  name: Data exposure
-  question: What harm could result from the improper disclosure of the information supported by the process?
-impact_scale:
-- code: S
-  name: No Impact
-- code: M
-  name: Moderate Impact
-- code: G
-  name: Significant Impact
-official_levels:
-- code: '0'
-  name: Neutral
-- code: '1'
-  name: Routine
-- code: '2'
-  name: Critical
-- code: 3.a
-  name: Strategic
-- code: 3.b
-  name: Strategic (national scope)
-technical_reference:
-  status: not_found_in_public_sources_consulted
-  consultation_date: '2026-10-24'
-  note: Not found does not mean officially nonexistent. Verify again with digital.gov.pt/CNCS/ARTE before actual
-    adoption.
-algorithm:
-  type: provisional_unofficial
-  origin: Student Guide, page 3; educational hypothesis
-  rules:
-  - id: all_no_impact
-    g_exactly: 0
-    m_exactly: 0
-    level: '0'
-  - id: some_moderate_no_significant
-    g_exactly: 0
-    m_minimum: 1
-    level: '1'
-  - id: one_significant
-    g_exactly: 1
-    level: '2'
-  - id: two_or_three_significant
-    g_minimum: 2
-    level: 3.a
-  exception_3b:
-    base_level: 3.a
-    requires_explicit_national_control: true
-    final_level: 3.b
-    note: Do not infer national control from isolated keywords; define a list and require human approval.
-prequalification_rule: Assess the business process, not just the document. The illustrative category assessments in
-  process.yaml do not replace the future prequalification of second-level CLAV processes.
-content_rule: Concrete evidence in the document may raise each dimension (S < M < G), but never lower it below
-  the value inherited from the process.
-final_decision: human_review_in_uncertain_cases
+  nome: Exposição de dados
+  pergunta: Quais os danos da divulgação indevida da informação suportada pelo processo?
+escala_impacto:
+- codigo: S
+  nome: Sem Impacto
+- codigo: M
+  nome: Impacto Moderado
+- codigo: G
+  nome: Impacto Significativo
+niveis_oficiais:
+- codigo: '0'
+  nome: Neutro
+- codigo: '1'
+  nome: Corrente
+- codigo: '2'
+  nome: Crítico
+- codigo: 3.a
+  nome: Estratégico
+- codigo: 3.b
+  nome: Estratégico (âmbito nacional)
+referencial_tecnico:
+  estado: nao_localizado_nas_fontes_publicas_consultadas
+  data_consulta: '2026-10-24'
+  nota: Não localizado não significa oficialmente inexistente. Reconfirmar digital.gov.pt/CNCS/ARTE antes de adoção
+    real.
+algoritmo:
+  tipo: provisorio_nao_oficial
+  origem: Guia do Aluno, página 3; hipótese didática
+  regras:
+  - id: todas_sem_impacto
+    g_exatamente: 0
+    m_exatamente: 0
+    nivel: '0'
+  - id: algum_moderado_sem_significativo
+    g_exatamente: 0
+    m_minimo: 1
+    nivel: '1'
+  - id: um_significativo
+    g_exatamente: 1
+    nivel: '2'
+  - id: dois_ou_tres_significativos
+    g_minimo: 2
+    nivel: 3.a
+  excecao_3b:
+    nivel_base: 3.a
+    exige_controle_nacional_explicito: true
+    nivel_final: 3.b
+    nota: Não inferir controlo nacional por palavras isoladas; definir lista e aprovação humana.
+regra_pre_qualificacao: Avaliar o processo de negócio e não apenas o documento. As avaliações ilustrativas por
+  categoria em processos.yaml não substituem a futura pré-qualificação de processos CLAV de 2.º nível.
+regra_conteudo: A evidência concreta do documento pode elevar cada dimensão (S < M < G), nunca baixá-la abaixo
+  do valor herdado do processo.
+decisao_final: revisao_humana_em_casos_duvidosos

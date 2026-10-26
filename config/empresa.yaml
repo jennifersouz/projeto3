@@ -1,0 +1,67 @@
+# Configuração académica: definições preliminares da equipa, NÃO qualificação oficial.
+versao: '1.0'
+id: empresa
+nome: Taxonomia empresarial
+natureza: politica_empresarial_provisoria_da_equipa
+fonte: Guia do Aluno, secções "Em resumo", "R2" e "R3"
+classes:
+- id: publico
+  nome: Público
+  ordem: 0
+  descricao: Informação expressamente aprovada para divulgação pública e sem informação sensível não divulgável.
+  exemplos:
+  - Aviso de concurso publicado
+  - Relatório já divulgado publicamente
+- id: uso_interno
+  nome: Uso Interno
+  ordem: 1
+  descricao: Informação operacional não destinada ao público; divulgação indevida de impacto limitado.
+  exemplos:
+  - Convocatória interna sem dados sensíveis
+  - Nota de serviço corrente
+- id: confidencial
+  nome: Confidencial
+  ordem: 2
+  descricao: Informação pessoal, financeira, clínica ou comercial que exige acesso por necessidade de conhecer.
+  exemplos:
+  - Recibo com identificação e IBAN
+  - Resultado clínico identificável
+  - Proposta de fornecedor antes da adjudicação
+- id: restrito
+  nome: Restrito
+  ordem: 3
+  descricao: Informação especialmente crítica ou segredo de elevada sensibilidade cuja exposição pode provocar
+    dano elevado.
+  exemplos:
+  - Credenciais válidas de acesso a serviço crítico
+  - Plano de segurança de sistema crítico não público
+regras_preliminares:
+- id: publicacao_autorizada
+  sinal: divulgacao_publica_autorizada
+  efeito: permite_publico_se_ausencia_de_sinais_sensiveis
+  observacao: A presença num portal público não torna automaticamente público todo o conteúdo de outro documento
+    semelhante.
+- id: iban
+  sinal: iban_em_contexto_nao_publico
+  efeito: classe_minima
+  classe: confidencial
+  observacao: Exemplo de regra mínima sugerida no guia.
+- id: saude
+  sinal: dados_clinicos_identificaveis
+  efeito: classe_minima
+  classe: confidencial
+  observacao: Regra proposta pela equipa; risco elevado pode justificar Restrito.
+- id: segredos
+  sinal: credenciais_de_acesso_ou_segredos_de_sistema_critico
+  efeito: classe_minima
+  classe: restrito
+  observacao: Regra proposta; nunca armazenar segredos reais no corpus.
+- id: identificacao
+  sinal: nif_ou_identificadores_pessoais
+  efeito: revisao_contextual
+  observacao: Um NIF isolado não basta para afirmar que todo o documento é Confidencial; considerar contexto.
+criterio_desempate: Escolher a classe de maior ordem exigida pelos sinais confirmados e pelo contexto do processo;
+  em dúvida ou baixa confiança, sinalizar revisão humana.
+classe_inicial_quando_sem_contexto: uso_interno
+alerta: Os exemplos são políticas de projeto propostas, não regras legais automáticas; Público exige indicação
+  efetiva de divulgação e ausência de sinais impeditivos.

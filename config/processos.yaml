@@ -1,0 +1,121 @@
+- id: aquisicao
+  nome: Aquisição
+  descricao: Aquisição de bens e serviços, incluindo propostas de fornecedores e relatórios de avaliação.
+  documentos_exemplo:
+  - Proposta de fornecedor sintética
+  - Relatório de avaliação de propostas sintético
+  codigos_clav:
+  - codigo: 300.10.005
+    titulo_oficial: Transação e transmissão de bens móveis não culturais e contratação de serviços
+    quando_usar: Procedimentos de aquisição de bens móveis e serviços; não aplicar automaticamente a obras públicas.
+    fonte_confirmacao: https://arquivohistorico.scml.pt/index.php/transacao-e-transmissao-de-bens-moveis-nao-culturais-e-contratacao-de-servicos?sf_culture=pt
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  pre_qualificacao_provisoria:
+    pessoas: S
+    estado: M
+    exposicao: M
+    justificacao: Propostas em avaliação podem envolver operação administrativa e informação comercial sensível;
+      informação já publicada pode ter menor exposição.
+- id: juridico
+  nome: Jurídico
+  descricao: Interpretação jurídica e produção de pareceres; distingue parecer de processos sancionatórios.
+  documentos_exemplo:
+  - Parecer jurídico geral sintético
+  - Pedido de interpretação de norma sintético
+  - Nota jurídica interna sintética
+  codigos_clav:
+  - codigo: 100.20.001
+    titulo_oficial: Produção de pareceres técnico-jurídicos de interpretação de diplomas jurídico-normativos
+    quando_usar: Pareceres de interpretação abstrata/geral; parecer sobre processo individual integra o respetivo
+      processo.
+    fonte_confirmacao: https://epl.di.uminho.pt/~mef2016/classes/showClasse.php?codigo=100.20.001
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  pre_qualificacao_provisoria:
+    pessoas: S
+    estado: M
+    exposicao: M
+    justificacao: Pareceres internos podem apoiar decisões e conter informação reservada; a sensibilidade varia
+      com o objeto concreto.
+- id: investigacao_desenvolvimento
+  nome: Investigação e Desenvolvimento
+  descricao: Investigação aplicada, desenvolvimento experimental, prototipagem e inovação.
+  documentos_exemplo:
+  - Relatório de investigação aplicada sintético
+  - Memória descritiva de protótipo sintética
+  - Plano de investigação sintético
+  codigos_clav:
+  - codigo: 800.20.002
+    titulo_oficial: Execução de projetos de investigação aplicada
+    quando_usar: Projetos de investigação aplicada. Surge na descendência de 800.20 na versão publicamente indexada
+      da CLAV.
+    fonte_confirmacao: https://epl.di.uminho.pt/~mef2016/classes/showClasse.php?codigo=800.20.002
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  - codigo: 800.20.500
+    titulo_oficial: Desenvolvimento experimental e aplicacional
+    quando_usar: Projetos de prototipagem, desenvolvimento experimental e aplicação de conhecimento.
+    fonte_confirmacao: https://clav.dglab.gov.pt/classes/consultar/c800.20
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  pre_qualificacao_provisoria:
+    pessoas: S
+    estado: S
+    exposicao: M
+    justificacao: Cenário de projeto de I&D comum com informação técnica em desenvolvimento; projetos estratégicos
+      podem requerer revisão e impacto maior.
+- id: saude
+  nome: Saúde
+  descricao: Prestação de cuidados clínicos e exames de apoio ao diagnóstico.
+  documentos_exemplo:
+  - Relatório clínico sintético
+  - Resultado laboratorial sintético
+  - Relatório imagiológico sintético
+  codigos_clav:
+  - codigo: 700.20.200
+    titulo_oficial: Prestação de cuidados de saúde personalizados
+    quando_usar: Registos ligados à prestação de cuidados personalizados; verificar o episódio concreto.
+    fonte_confirmacao: https://clav.dglab.gov.pt/classes/consultar/c700.20
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  - codigo: 700.20.406
+    titulo_oficial: Apoio ao diagnóstico e terapêutica
+    quando_usar: Exames laboratoriais, imagiologia e outros procedimentos de apoio diagnóstico, conforme contexto.
+    fonte_confirmacao: https://clav.dglab.gov.pt/classes/consultar/c700.20
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  pre_qualificacao_provisoria:
+    pessoas: G
+    estado: S
+    exposicao: G
+    justificacao: 'Cenário de cuidados clínicos sensíveis: falhas de disponibilidade/integridade podem prejudicar
+      pessoas; exposição indevida pode ser especialmente danosa. Não generalizar a todos os serviços de saúde.'
+- id: gestao_administrativa
+  nome: Gestão Administrativa
+  descricao: Registo e organização de reuniões de órgãos de decisão e consultivos.
+  documentos_exemplo:
+  - Ata sintética de reunião de órgão executivo
+  - Convocatória sintética
+  - Recomendação de órgão consultivo sintética
+  codigos_clav:
+  - codigo: 150.10.701
+    titulo_oficial: Reunião de órgãos executivos
+    quando_usar: Reuniões de órgãos executivos, incluindo atas; não representa qualquer reunião interna.
+    fonte_confirmacao: https://arquivohistorico.scml.pt/index.php/reuniao-de-orgaos-executivos
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  - codigo: 150.10.702
+    titulo_oficial: Reunião de órgãos e estruturas operacionais e de aconselhamento
+    quando_usar: Reuniões de estruturas operacionais e órgãos consultivos; verificar natureza do órgão.
+    fonte_confirmacao: https://epl.di.uminho.pt/~mef2016/classes/showClasse.php?codigo=150.10.702
+    verificacao: codigo_e_titulo_conferidos_em_fonte_publica;_confirmar_alteracoes_2026
+  pre_qualificacao_provisoria:
+    pessoas: S
+    estado: S
+    exposicao: S
+    justificacao: Cenário administrativo rotineiro sem conteúdo sensível; deliberações estratégicas ou dados pessoais
+      obrigam a aumentar o impacto.
+- id: outro
+  nome: Outro / Não identificado
+  tipo: fallback
+  descricao: Categoria técnica para documentos sem processo identificável com confiança suficiente; exige revisão
+    humana.
+  documentos_exemplo:
+  - Ficheiro sem contexto suficiente
+  - Documento que não pertence às categorias definidas
+  codigos_clav: []
+  pre_qualificacao_provisoria: null
