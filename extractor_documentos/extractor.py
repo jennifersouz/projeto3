@@ -1,7 +1,7 @@
 
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pymupdf  # PyMuPDF
 from docx import Document
 
 
@@ -9,7 +9,7 @@ def extrair_pdf(caminho):
     """Extrai o texto de um ficheiro PDF."""
     textos = []
 
-    with fitz.open(caminho) as documento:
+    with pymupdf.open(caminho) as documento:
         for pagina in documento:
             texto = pagina.get_text("text")
             textos.append(texto)
@@ -53,8 +53,10 @@ def extrair_texto(caminho):
 
 
 if __name__ == "__main__":
-    caminho = "documentos/0001100011.pdf"
-
+    BASE_DIR = Path(__file__).resolve().parent
+    base_caminho = BASE_DIR / "documentos" / "0001100011.pdf"
+    caminho = str(base_caminho)
+        
     try:
         if caminho.lower().endswith(".pdf"):
             texto_extraido = extrair_pdf(caminho)
