@@ -1,0 +1,194 @@
+<mxfile host="app.diagrams.net" version="24.0.0">
+  <diagram id="contextiq-arquitetura" name="Arquitetura">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Arquitetura — ContextIQ · motor local de classificação documental" style="text;html=1;align=left;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1F3864;" vertex="1" parent="1">
+          <mxGeometry x="40" y="12" width="1000" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Fonte: docs/arquitetura.md · v1.0 · 02/11/2026" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="15" width="520" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="doc" value="Documentos de entrada&lt;br&gt;&lt;b&gt;PDF / DOCX&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="240" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="motor" value="Motor local ContextIQ — Python 3.11+ · sem rede (apenas 127.0.0.1)" style="swimlane;horizontal=1;startSize=34;html=1;rounded=1;fillColor=#F0F4FF;strokeColor=#6C8EBF;fontStyle=1;fontSize=15;container=1;collapsible=0;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="1000" height="740" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cli" value="CLI de lote&lt;br&gt;&lt;b&gt;Typer&lt;/b&gt;&lt;br&gt;scripts/classificar.py" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="20" y="50" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ext" value="Extração de texto&lt;br&gt;&lt;b&gt;PyMuPDF / python-docx&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="330" y="50" width="230" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="cfg" value="Configuração&lt;br&gt;&lt;b&gt;YAML validado · PyYAML&lt;/b&gt;&lt;br&gt;config/*.yaml" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="650" y="40" width="280" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l1" value="Camada 1 — Regras + léxico&lt;br&gt;&lt;b&gt;Python · config/processos.yaml&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="330" y="165" width="230" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="orq" value="Orquestrador&lt;br&gt;&lt;b&gt;Python&lt;/b&gt;&lt;br&gt;limiares de confiança: a definir" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="650" y="165" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="l2" value="Camada 2 — TF-IDF + regressão logística&lt;br&gt;&lt;b&gt;scikit-learn&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="40" y="310" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" value="Camada 3 — LLM local&lt;br&gt;&lt;b&gt;Ollama + Pydantic&lt;/b&gt;&lt;br&gt;modelo 7–8B: a definir" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="40" y="440" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="perfil" value="Perfil de sinais&lt;br&gt;processo + dimensões + evidência&lt;br&gt;&lt;b&gt;contrato JSON&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="330" y="310" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="tax" value="Motor de taxonomias&lt;br&gt;&lt;b&gt;Python + YAML&lt;/b&gt;&lt;br&gt;empresa / PNCS / futuras: a definir" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="650" y="310" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="res" value="Resultado&lt;br&gt;&lt;b&gt;classe + justificação&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="650" y="440" width="280" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="meta" value="Escritor de metadados&lt;br&gt;&lt;b&gt;pikepdf (PDF/XMP)&lt;/b&gt;&lt;br&gt;&lt;b&gt;python-docx (DOCX)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="330" y="580" width="250" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="inv" value="Exportador de inventário&lt;br&gt;&lt;b&gt;JSON / CSV&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=11;" vertex="1" parent="motor">
+          <mxGeometry x="650" y="580" width="280" height="85" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ollama" value="Ollama local&lt;br&gt;&lt;b&gt;127.0.0.1:11434&lt;/b&gt;&lt;br&gt;modelo 7–8B: a definir" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="240" width="250" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="exif" value="Verificação externa&lt;br&gt;&lt;b&gt;exiftool / pdfinfo&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="475" width="250" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="wireshark" value="Prova de isolamento&lt;br&gt;&lt;b&gt;--network none / Wireshark&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="580" width="250" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="internet" value="Internet&lt;br&gt;&lt;b&gt;proibida durante a classificação&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#990000;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="700" width="250" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend" value="&lt;b&gt;Legenda&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Azul&lt;/b&gt;: componente implementado · &lt;b&gt;Laranja&lt;/b&gt;: parcial · &lt;b&gt;Amarelo&lt;/b&gt;: por implementar&lt;br&gt;&lt;b&gt;Verde&lt;/b&gt;: configuração YAML · &lt;b&gt;Cinza&lt;/b&gt;: ferramenta/serviço externo&lt;br&gt;&lt;b&gt;a definir&lt;/b&gt;: tecnologia ou decisão ainda não tomada" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFFBE6;strokeColor=#D6B656;size=14;align=left;spacingLeft=10;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="970" width="560" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_doc_ext" value="PDF / DOCX" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="doc" target="ext">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="125" />
+              <mxPoint x="340" y="242" />
+              <mxPoint x="500" y="242" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cli_ext" value="inicia lote" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;endArrow=open;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cli" target="ext">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ext_l1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;" edge="1" parent="1" source="ext" target="l1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_l1_orq" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;" edge="1" parent="1" source="l1" target="orq">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_l1_perfil" value="sinais + processo" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="l1" target="perfil">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_orq_l2" value="perfil ↔ probabilidades" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=block;startFill=1;endArrow=block;endFill=1;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="orq" target="l2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="475" />
+              <mxPoint x="195" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_orq_l3" value="baixa confiança ↔ JSON validado" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;startArrow=block;startFill=1;endArrow=block;endFill=1;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="orq" target="l3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="890" y="490" />
+              <mxPoint x="330" y="490" />
+              <mxPoint x="330" y="625" />
+              <mxPoint x="195" y="625" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_orq_perfil" value="decide camada" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="orq" target="perfil">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="460" />
+              <mxPoint x="550" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_perfil_tax" value="traduz" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="perfil" target="tax">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cfg_l1" value="léxico / limiar" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;endArrow=open;fontSize=9;labelBackgroundColor=#FFFFFF;strokeColor=#82B366;fontColor=#4D7A3A;" edge="1" parent="1" source="cfg" target="l1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="285" />
+              <mxPoint x="650" y="342" />
+              <mxPoint x="560" y="342" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cfg_tax" value="regras" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;endArrow=open;fontSize=9;labelBackgroundColor=#FFFFFF;strokeColor=#82B366;fontColor=#4D7A3A;" edge="1" parent="1" source="cfg" target="tax">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="285" />
+              <mxPoint x="1000" y="490" />
+              <mxPoint x="930" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_tax_res" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;" edge="1" parent="1" source="tax" target="res">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_res_meta" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;" edge="1" parent="1" source="res" target="meta">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="650" y="675" />
+              <mxPoint x="650" y="750" />
+              <mxPoint x="495" y="750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_res_inv" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;fontSize=9;" edge="1" parent="1" source="res" target="inv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_l3_ollama" value="127.0.0.1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;endArrow=open;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="l3" target="ollama">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="195" y="755" />
+              <mxPoint x="1052" y="755" />
+              <mxPoint x="1052" y="340" />
+              <mxPoint x="1225" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_meta_exif" value="verificar" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;endArrow=open;fontSize=9;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="meta" target="exif">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="822" />
+              <mxPoint x="330" y="900" />
+              <mxPoint x="1076" y="900" />
+              <mxPoint x="1076" y="512" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_motor_internet" value="proibido" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#B85450;fontColor=#990000;endArrow=block;endFill=1;fontSize=10;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="motor" target="internet">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="780" />
+              <mxPoint x="1080" y="735" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
