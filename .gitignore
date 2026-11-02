@@ -224,3 +224,6 @@ __marimo__/
 __pycache__/
 .pytest_cache/
 .env
+
+# Corpus sintético e folhas de anotação gerados localmente
+dados/

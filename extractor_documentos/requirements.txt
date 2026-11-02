@@ -1,4 +1,0 @@
-PyMuPDF
-python-docx
-
-python -m pip install pymupdf python-docx

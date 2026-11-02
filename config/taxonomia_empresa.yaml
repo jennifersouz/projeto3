@@ -1,9 +1,8 @@
-# Configuração académica: definições preliminares da equipa, NÃO qualificação oficial.
 versao: '1.0'
 id: empresa
 nome: Taxonomia empresarial
 natureza: politica_empresarial_provisoria_da_equipa
-fonte: Guia do Aluno, secções "Em resumo", "R2" e "R3"
+fonte: Guia do Aluno
 classes:
 - id: publico
   nome: Público

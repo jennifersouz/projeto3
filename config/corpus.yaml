@@ -1,0 +1,76 @@
+versao: '1.0'
+seed: 4900
+por_processo: 50
+proporcao_pdf: 0.5
+proporcao_teste: 0.2
+diretoria_saida: dados/corpus
+
+amostra_anotacao:
+  tamanho: 50
+  seed: 4901
+  diretoria_saida: dados/anotacao
+
+processos_publicaveis:
+  - aquisicao
+  - gestao_administrativa
+
+sinais_permitidos:
+  aquisicao:
+    - nif
+    - iban
+    - credenciais
+    - publicacao_autorizada
+  juridico:
+    - nif
+    - iban
+    - credenciais
+  investigacao_desenvolvimento:
+    - nif
+    - iban
+    - credenciais
+  saude:
+    - nif
+    - dados_clinicos
+  gestao_administrativa:
+    - nif
+    - publicacao_autorizada
+  outro:
+    - nif
+    - iban
+
+classe_base_por_processo:
+  aquisicao: uso_interno
+  juridico: uso_interno
+  investigacao_desenvolvimento: uso_interno
+  saude: confidencial
+  gestao_administrativa: uso_interno
+  outro: uso_interno
+
+dimensoes_padrao:
+  pessoas: S
+  estado: S
+  exposicao: S
+
+probabilidades_sinais:
+  nif: 0.50
+  iban: 0.25
+  credenciais: 0.12
+  publicacao_autorizada: 0.25
+
+efeitos_conteudo:
+  nif:
+    exposicao: '+1'
+  iban:
+    exposicao: '+1'
+  dados_clinicos:
+    pessoas: G
+    exposicao: G
+  credenciais:
+    estado: G
+    exposicao: G
+
+nota: >
+  Regra provisoria de geracao e anotacao do corpus. Nao e o referencial oficial
+  do CNCS e da ARTE. O conteudo concreto so pode subir as dimensoes herdadas do
+  processo, nunca desce-las. A classe empresarial segue as regras preliminares de
+  config/taxonomia_empresa.yaml e a classe base definida neste ficheiro.

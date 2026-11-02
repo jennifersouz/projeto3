@@ -1,95 +1,136 @@
 # ContextIQ
 
-ContextIQ is a Python project designed to help extract, organize, and prepare document context from PDF and DOCX files for downstream analysis, indexing, or AI-driven workflows.
+ContextIQ é um projeto em Python concebido para extrair, organizar e preparar o contexto de documentos PDF e DOCX para análise, indexação ou fluxos de trabalho com IA.
 
-This repository is currently a lightweight foundation for the project and includes the Python project configuration and the dependencies needed to work with documents.
+O repositório inclui a configuração do projeto, as dependências para trabalhar com documentos e o primeiro bloco de trabalho: um corpus sintético etiquetado para medir a qualidade da classificação.
 
-## Features
+## Funcionalidades
 
-- PDF document parsing with PyMuPDF
-- DOCX document handling with python-docx
-- Clean project setup for Python 3.13
-- Simple dependency management with uv
-- Ready for extension into extraction, chunking, indexing, or search workflows
+- Extração de texto de PDF com PyMuPDF e de DOCX com python-docx
+- Taxonomias configuráveis em YAML: empresarial e PNCS
+- Processos de negócio com pré-qualificação provisória das três dimensões
+- Geração reprodutível de corpus sintético em PDF e DOCX
+- Amostra de dupla anotação e cálculo do kappa de Cohen
+- Divisão estratificada do corpus em treino e teste
+- Configuração de projeto limpa para Python 3.13, com gestão de dependências via uv
 
-## Project status
+## Estado do projeto
 
-This project is in an early stage. The repository currently contains the base configuration and package metadata, and it is prepared for implementing document-processing functionality.
+O projeto encontra-se numa fase inicial. Estão concluídos a extração de texto, a configuração das taxonomias e dos processos e a ferramenta de geração e anotação do corpus. A próxima etapa é o motor de sinais e o classificador baseline.
 
-## Requirements
+## Requisitos
 
 - Python 3.13
-- uv (recommended for dependency management)
+- uv (recomendado para a gestão de dependências)
 
-## Installation
+## Instalação
 
-Clone the repository and install the dependencies:
+Clone o repositório e instale as dependências:
 
 ```bash
 cd projeto3
 uv sync
 ```
 
-If you prefer to use the virtual environment directly:
+Todas as dependências estão declaradas no `pyproject.toml` e fixadas no `uv.lock`.
+
+## Corpus sintético
+
+O corpus é gerado localmente e fica em `dados/corpus/`, que não é versionado. Só são usados documentos sintéticos ou públicos.
+
+Gerar o corpus (50 documentos por processo, num total de 300):
 
 ```bash
-uv venv
-source .venv/bin/activate  # Linux/macOS
-.venv\Scripts\activate      # Windows
-pip install -r requirements.txt
+uv run python scripts/gerar_corpus.py --limpar
 ```
 
-## Usage
+Saídas:
 
-The current project scaffold is ready to be extended with your document-processing logic. A typical workflow might look like this:
+- `dados/corpus/documentos/` — documentos PDF e DOCX com nomes neutros;
+- `dados/corpus/etiquetas.csv` — processo, dimensões, classe, justificação, split e hash;
+- `dados/corpus/manifesto.json` — parâmetros, contagens e aviso da regra provisória.
+
+Preparar a amostra de 50 documentos para dupla anotação:
+
+```bash
+uv run python scripts/preparar_amostra_anotacao.py --limpar
+```
+
+Cada anotador preenche `dados/anotacao/anotador_a.csv` ou `anotador_b.csv` de forma independente. O guia está em [`docs/guia_anotacao.md`](docs/guia_anotacao.md).
+
+Calcular o kappa de Cohen:
+
+```bash
+uv run python scripts/calcular_kappa.py
+```
+
+O resultado fica em `dados/anotacao/kappa.json`. O mínimo aceite para avançar é 0,61 no kappa macro; abaixo disso, o guia de anotação deve ser revisto.
+
+## Utilização
+
+Extrair o texto de um documento PDF ou DOCX:
+
+```bash
+uv run python scripts/extrair_texto.py examples/0001100011.pdf
+```
+
+O corpus pode ser lido a partir das etiquetas:
 
 ```python
+import csv
 from pathlib import Path
 
-# Example placeholder for future PDF/DOCX processing logic
-pdf_path = Path("documents/example.pdf")
-docx_path = Path("documents/example.docx")
+with Path("dados/corpus/etiquetas.csv").open(encoding="utf-8", newline="") as ficheiro:
+    documentos = list(csv.DictReader(ficheiro))
+
+for documento in documentos:
+    print(documento["id"], documento["processo"], documento["classe"])
 ```
 
-## Project structure
+## Estrutura do projeto
 
 ```text
 projeto3/
-├── .venv/              # Local virtual environment
+├── .venv/                  # Ambiente virtual local
 ├── .gitignore
 ├── .python-version
-├── pyproject.toml      # Project metadata and dependencies
-├── uv.lock             # Lock file for reproducible installs
-├── README.md           # Project documentation
-└── src/                # To be added for application code
+├── config/                 # Taxonomias, processos e parâmetros do corpus
+│   ├── taxonomia_empresa.yaml
+│   ├── taxonomia_pncs.yaml
+│   ├── processos.yaml
+│   └── corpus.yaml
+├── dados/                  # Corpus e anotações gerados localmente (ignorado)
+├── docs/                   # Guia de anotação e enunciado
+├── examples/               # Documento de exemplo
+├── scripts/                # Comandos de linha de comandos
+├── src/
+│   └── motor/              # Código principal: configuração, extração, corpus, kappa
+├── tests/                  # Testes com pytest
+├── pyproject.toml          # Metadados do projeto e dependências
+├── uv.lock                 # Ficheiro de bloqueio para instalações reprodutíveis
+└── README.md               # Documentação do projeto
 ```
 
-## Development
+## Desenvolvimento
 
-To run tests (when implemented):
+Para executar os testes:
 
 ```bash
-pytest
+uv run pytest
 ```
 
-To add new dependencies:
+Para adicionar novas dependências:
 
 ```bash
-uv add <package-name>
+uv add <nome-do-pacote>
 ```
 
-## Dependencies
+## Dependências
 
-The current dependencies are:
+As dependências atuais são:
 
 - pymupdf
 - python-docx
-- pytest (development only)
-
-## License
-
-This project does not currently declare a license. Add one if you plan to distribute it publicly.
-
-## Contributing
-
-Contributions are welcome. If you want to help build the project, open an issue or submit a pull request with your proposed changes.
+- faker
+- pyyaml
+- pytest (apenas para desenvolvimento)
