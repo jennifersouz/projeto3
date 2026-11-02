@@ -1,9 +1,49 @@
+versao: '1.0'
+
+# Peso mínimo (soma dos indícios) para aceitar um processo; abaixo disto usa-se
+# o fallback "outro". Ajustável sem alterar código.
+limiar_processo: 4
+
+# Texto usado na justificação do inventário para cada sinal detetado.
+descricao_sinal:
+  nif: NIF ou identificadores pessoais
+  iban: IBAN em contexto não público
+  credenciais: credenciais de acesso ou segredos de sistema
+  dados_clinicos: dados clínicos identificáveis
+  publicacao_autorizada: publicação autorizada
+
+processos:
 - id: aquisicao
   nome: Aquisição
   descricao: Aquisição de bens e serviços, incluindo propostas de fornecedores e relatórios de avaliação.
   documentos_exemplo:
   - Proposta de fornecedor sintética
   - Relatório de avaliação de propostas sintético
+  # Peso 3: marcador forte. Peso 1: indicador fraco. "padrao" é uma expressão
+  # regular; usa aspas simples no YAML para não escapar as barras invertidas.
+  lexico:
+  - padrao: 'proposta de fornecedor'
+    peso: 3
+  - padrao: 'relat[óo]rio de avalia[çc][ãa]o de propostas'
+    peso: 3
+  - padrao: 'contrat[oa] de aquisi[çc][ãa]o'
+    peso: 3
+  - padrao: 'aviso de concurso'
+    peso: 2
+  - padrao: 'j[uú]ri avaliou'
+    peso: 2
+  - padrao: 'contrata[çc][ãa]o p[uú]blica'
+    peso: 2
+  - padrao: 'adjudica[çc][ãa]o'
+    peso: 2
+  - padrao: 'valor estimado'
+    peso: 1
+  - padrao: 'fornecedor'
+    peso: 1
+  - padrao: 'concorr[eê]ncia'
+    peso: 1
+  - padrao: 'multicrit[eé]rio'
+    peso: 1
   codigos_clav:
   - codigo: 300.10.005
     titulo_oficial: Transação e transmissão de bens móveis não culturais e contratação de serviços
@@ -23,6 +63,27 @@
   - Parecer jurídico geral sintético
   - Pedido de interpretação de norma sintético
   - Nota jurídica interna sintética
+  lexico:
+  - padrao: 'parecer jur[ií]dico'
+    peso: 3
+  - padrao: 'interpreta[çc][ãa]o de norma'
+    peso: 3
+  - padrao: 'interpreta[çc][ãa]o da norma'
+    peso: 3
+  - padrao: 'jurisprud[eê]ncia'
+    peso: 3
+  - padrao: 'nota jur[ií]dica'
+    peso: 3
+  - padrao: 'minuta de contrato'
+    peso: 2
+  - padrao: 'conclus[ãa]o jur[ií]dica'
+    peso: 2
+  - padrao: 'fundamenta[çc][ãa]o legal'
+    peso: 2
+  - padrao: 'norma aplic[áa]vel'
+    peso: 1
+  - padrao: 'enquadramento legal'
+    peso: 1
   codigos_clav:
   - codigo: 100.20.001
     titulo_oficial: Produção de pareceres técnico-jurídicos de interpretação de diplomas jurídico-normativos
@@ -43,6 +104,25 @@
   - Relatório de investigação aplicada sintético
   - Memória descritiva de protótipo sintética
   - Plano de investigação sintético
+  lexico:
+  - padrao: 'investiga[çc][ãa]o aplicada'
+    peso: 3
+  - padrao: 'prot[oó]tipo'
+    peso: 3
+  - padrao: 'desenvolvimento experimental'
+    peso: 3
+  - padrao: 'plano de investiga[çc][ãa]o'
+    peso: 3
+  - padrao: 'ensaio'
+    peso: 1
+  - padrao: 'metodologia experimental'
+    peso: 2
+  - padrao: 'propriedade intelectual resultante'
+    peso: 2
+  - padrao: 'cons[oó]rcio'
+    peso: 1
+  - padrao: 'parceiro industrial'
+    peso: 1
   codigos_clav:
   - codigo: 800.20.002
     titulo_oficial: Execução de projetos de investigação aplicada
@@ -68,6 +148,25 @@
   - Relatório clínico sintético
   - Resultado laboratorial sintético
   - Relatório imagiológico sintético
+  lexico:
+  - padrao: 'relat[oó]rio cl[ií]nico'
+    peso: 3
+  - padrao: 'resultado laboratorial'
+    peso: 3
+  - padrao: 'relat[oó]rio imagiol[oó]gico'
+    peso: 3
+  - padrao: 'n[uú]mero de utente'
+    peso: 3
+  - padrao: 'plano terap[eê]utico'
+    peso: 2
+  - padrao: 'prescri[çc][ãa]o m[eé]dica'
+    peso: 2
+  - padrao: 'diagn[oó]stico'
+    peso: 1
+  - padrao: 'exames'
+    peso: 1
+  - padrao: 'utente'
+    peso: 1
   codigos_clav:
   - codigo: 700.20.200
     titulo_oficial: Prestação de cuidados de saúde personalizados
@@ -92,6 +191,25 @@
   - Ata sintética de reunião de órgão executivo
   - Convocatória sintética
   - Recomendação de órgão consultivo sintética
+  lexico:
+  - padrao: 'ata de reuni[ãa]o'
+    peso: 3
+  - padrao: 'convocat[óo]ria'
+    peso: 3
+  - padrao: 'ordem de trabalhos'
+    peso: 3
+  - padrao: 'delibera[çc][õo]es'
+    peso: 2
+  - padrao: '[oó]rg[ãa]o executivo'
+    peso: 2
+  - padrao: '[óo]rg[ãa]o consultivo'
+    peso: 2
+  - padrao: 'reuni[ãa]o ordin[áa]ria'
+    peso: 2
+  - padrao: 'confirmam a ata'
+    peso: 1
+  - padrao: 'arquivo corrente'
+    peso: 1
   codigos_clav:
   - codigo: 150.10.701
     titulo_oficial: Reunião de órgãos executivos
@@ -117,5 +235,6 @@
   documentos_exemplo:
   - Ficheiro sem contexto suficiente
   - Documento que não pertence às categorias definidas
+  lexico: []
   codigos_clav: []
   pre_qualificacao_provisoria: null
